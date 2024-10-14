@@ -1,6 +1,5 @@
 import pygame
 from src.tetromino.tetromino import TETROMINOS
-from src.tetromino.draw import draw_tetromino
 CELL_SIZE = 30
 
 class TetrisPiece:

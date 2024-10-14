@@ -1,4 +1,3 @@
-# draw.py
 import pygame
 from tetromino.colors import COLORS
 
