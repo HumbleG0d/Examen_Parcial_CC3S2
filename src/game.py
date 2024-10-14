@@ -7,6 +7,8 @@ NEW_TETROMINO_TIME = 500
 def main():
     window , clock , running = draw_board()
 
+# Falta agregar la simulacion de caida de la pieza, condicionado a correciones de la tabla y piezas del juego
+
     tetromino, shape_name = generate_random_tetromino()
     position = (120, 0)  # Definimos la posicion inicial del tetromino
     creation_timer = 0  # Control del tiempo de creación de nuevos tetrominós
