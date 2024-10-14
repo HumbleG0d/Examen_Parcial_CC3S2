@@ -7,6 +7,7 @@ GRID_WIDTH = 10
 GRID_HEIGHT = 20
 CELL_SIZE = 30
 
+# Simula el movimiento de caida de una pieza
 class caida_shapes:
     def update(self, delta_time, keys_pressed):
         self.fall_time += delta_time

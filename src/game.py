@@ -40,7 +40,6 @@ def main():
         draw_tetromino(window, tetromino, position, shape_name)  # Dibujar el tetrominó
         pygame.display.flip()  # Actualizar la pantalla
 
-
     pygame.quit()
 
 if __name__ == "__main__":
