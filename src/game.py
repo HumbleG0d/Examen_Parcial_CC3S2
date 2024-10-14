@@ -5,7 +5,7 @@ from board.board import draw_board
 from tetromino.radown_tetromino import generate_random_tetromino
 from punctuation.score import Score  # Importamos la clase Score
 
-NEW_TETROMINO_TIME = 500
+NEW_TETROMINO_TIME = 2000
 
 def main():
     window, clock, running, grid, score = draw_board()

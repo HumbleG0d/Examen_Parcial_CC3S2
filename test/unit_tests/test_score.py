@@ -1,5 +1,8 @@
 import unittest
-from src.punctuation.score import Score  # Asegúrate de que la ruta sea correcta según la estructura de tu proyecto
+import sys
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../src')))
+from src.punctuation.score import Score  
 
 class TestScore(unittest.TestCase):
 
