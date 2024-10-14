@@ -3,12 +3,12 @@ from tetromino.rotation import rotate_tetromino
 from tetromino.draw import draw_tetromino  
 from board.board import draw_board
 from tetromino.radown_tetromino import generate_random_tetromino
-from score import Score  # Importamos la clase Score
+from punctuation.score import Score  # Importamos la clase Score
 
 NEW_TETROMINO_TIME = 500
 
 def main():
-    window, clock, running = draw_board()
+    window, clock, running, grid, score = draw_board()
     
     # Inicializamos la puntuación
     score = Score()
