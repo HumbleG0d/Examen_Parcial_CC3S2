@@ -1,0 +1,12 @@
+[
+  "test/unit_tests/TestUnitPuntuacion.py::TestScore::test_initial_score_is_zero",
+  "test/unit_tests/TestUnitPuntuacion.py::TestScore::test_reset_score",
+  "test/unit_tests/TestUnitPuntuacion.py::TestScore::test_update_score_multiple_lines",
+  "test/unit_tests/TestUnitPuntuacion.py::TestScore::test_update_score_single_line",
+  "test/unit_tests/TestUnitPuntuacion.py::TestScore::test_update_score_with_level",
+  "test/unit_tests/test_score.py::TestScore::test_initial_score_is_zero",
+  "test/unit_tests/test_score.py::TestScore::test_reset_score",
+  "test/unit_tests/test_score.py::TestScore::test_update_score_multiple_lines",
+  "test/unit_tests/test_score.py::TestScore::test_update_score_single_line",
+  "test/unit_tests/test_score.py::TestScore::test_update_score_with_level"
+]
