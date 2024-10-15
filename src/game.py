@@ -5,8 +5,7 @@ from board.board import draw_board, check_lines
 from tetromino.radown_tetromino import generate_random_tetromino
 from punctuation.score import Score
 from movimientovelocidad.caidashapes import FallManager
-
-NEW_TETROMINO_TIME = 2000
+from tetromino.colors import COLORS
 
 def main():
     running = True
@@ -71,7 +70,7 @@ def main():
                         position = new_position
                     else:
                         # Fijar el tetrominó en la cuadrícula
-                        fix_tetromino_in_place(grid, tetromino, position)
+                        fix_tetromino_in_place(grid, tetromino, position, shape_name)
                         
                         # Verificar cuántas líneas se completaron
                         lines_cleared = check_lines(grid)
@@ -109,13 +108,14 @@ def is_valid_position(position, tetromino, grid, window):
                     return False
     return True
 
-def fix_tetromino_in_place(grid, tetromino, position):
+def fix_tetromino_in_place(grid, tetromino, position, shape_name):
     for y, row in enumerate(tetromino):
         for x, cell in enumerate(row):
             if cell:
                 grid_y = (position[1] // 30) + y
                 grid_x = (position[0] // 30) + x
-                grid[grid_y][grid_x] = cell
+                #grid[grid_y][grid_x] = cell
+                grid[grid_y][grid_x] = COLORS[shape_name]
 
 # Función para mostrar la pantalla de Game Over
 def display_game_over(window):
@@ -139,7 +139,8 @@ def draw_grid(window, grid):
     for y, row in enumerate(grid):
         for x, cell in enumerate(row):
             if cell:
-                pygame.draw.rect(window, (128, 128, 128), pygame.Rect(x * 30, y * 30, 30, 30))
+                pygame.draw.rect(window, cell, pygame.Rect(x * 30, y * 30, 30, 30))
+                pygame.draw.rect(window, (0, 0, 0), pygame.Rect(x * 30, y * 30, 30, 30), 1)
 
 # Función para mostrar la puntuación en pantalla
 def display_score(window, points):
