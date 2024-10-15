@@ -1,3 +1,5 @@
+import os
+os.environ["SDL_AUDIODRIVER"] = "dummy"
 import pygame
 from tetromino.rotation import rotate_tetromino 
 from tetromino.draw import draw_tetromino  
@@ -6,8 +8,14 @@ from tetromino.radown_tetromino import generate_random_tetromino
 from punctuation.score import Score
 from movimientovelocidad.caidashapes import FallManager
 from tetromino.colors import COLORS
+from prometheus_client import start_http_server, Counter
+import time
+
+game_counter = Counter('tetris_games_played','Total number of Tetris games played')
 
 def main():
+
+    start_http_server(8000)
     running = True
     game_over = False
 
@@ -92,6 +100,8 @@ def main():
                 draw_grid(window, grid)
                 display_score(window, score.points)
                 pygame.display.flip()
+
+                time.sleep(1)
 
     pygame.quit()
 
