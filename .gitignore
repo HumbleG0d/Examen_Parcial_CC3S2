@@ -1,0 +1,7 @@
+# Ignorar archivos .pyc
+*.pyc
+
+# Ignorar carpetas __pycache__
+__pycache__/
+
+# Puedes añadir aquí otras reglas según lo que desees ignorar
