@@ -11,7 +11,7 @@ class FallManager:
     def update_fall_speed(self, time_passed):
         self.game_time +=time_passed
         if self.game_time >= SPEED_INCREMENT_INTERVAL:
-            self.fall_speed= max(100, self.fall_speed * SPEED_INCREASE_FACTOR)
+            self.fall_speed *= SPEED_INCREASE_FACTOR
             self.game_time = 0
 
     def update_fall_timer(self, time_passed):
