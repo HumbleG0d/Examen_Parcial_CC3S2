@@ -1,6 +1,12 @@
 # Usamos una imagen base oficial de Python
 FROM python:3.11-slim
 
+# Copia el script de instalación de dependencias del sistema
+COPY system-dependencies.sh .
+
+# Da permisos de ejecución al script y ejecuta el script
+RUN chmod +x system-dependencies.sh && ./system-dependencies.sh
+
 # Establecemos el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
@@ -13,8 +19,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiamos todo el contenido de nuestro proyecto al contenedor
 COPY . .
 
-# Ejecutamos los tests (BDD y unitarios) al construir la imagen, opcional
-# RUN pytest && behave
+ENV XDG_RUNTIME_DIR=/tmp
 
 # Comando por defecto para ejecutar el juego
-CMD ["python", "game.py"]
+CMD ["python", "src/game.py"]

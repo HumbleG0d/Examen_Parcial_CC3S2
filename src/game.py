@@ -1,3 +1,5 @@
+import os
+os.environ["SDL_AUDIODRIVER"] = "dummy"
 import pygame
 from tetromino.rotation import rotate_tetromino 
 from tetromino.draw import draw_tetromino  

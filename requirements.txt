@@ -1,17 +1,5 @@
-# Librería para manejar el bucle del juego y eventos de teclado
-pygame==2.5.0
-
-# Librería para manipulación de arreglos y matrices (para la lógica del tablero y tetrominós)
-numpy==1.26.0
-
-# Librería para generar arte ASCII en la consola
-pyfiglet==0.8.post1
-
-# Librería para colorear texto en la consola
-termcolor==2.4.0
-
-# Librerías para pruebas BDD con Gherkin
 behave==1.2.6
-
-# Librería para pruebas unitarias
-pytest==7.4.2
+parse==1.20.2
+parse_type==0.6.4
+pygame==2.6.1
+six==1.16.0

@@ -1,3 +1,5 @@
+import os
+os.environ["SDL_AUDIODRIVER"] = "dummy"
 import pygame
 
 WINDOW_WIDTH = 300  # Ancho de la ventana
