@@ -38,7 +38,7 @@ jobs:
 
       - name: Run feature tests
         run: |
-          docker-compose exec -T etris behave test/features
+          docker-compose exec -T etris behave -v test/features
 
       - name: Stop services
         run: docker-compose down
