@@ -4,3 +4,4 @@ parse_type==0.6.4
 pygame==2.6.1
 six==1.16.0
 prometheus-client==0.20.0
+pytest
