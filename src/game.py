@@ -1,4 +1,6 @@
+import sys
 import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 os.environ["SDL_AUDIODRIVER"] = "dummy"
 import pygame
 from tetromino.rotation import rotate_tetromino 

@@ -19,7 +19,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiamos todo el contenido de nuestro proyecto al contenedor
 COPY . .
 
-ENV PYTHONPATH=/app
+ENV PYTHONPATH=/app/src:/app
 
 ENV XDG_RUNTIME_DIR=/tmp
 
