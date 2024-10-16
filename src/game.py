@@ -1,3 +1,5 @@
+import os
+os.environ["SDL_AUDIODRIVER"] = "dummy"
 import pygame
 from tetromino.rotation import rotate_tetromino 
 from tetromino.draw import draw_tetromino  
@@ -5,10 +7,15 @@ from board.board import draw_board, check_lines
 from tetromino.radown_tetromino import generate_random_tetromino
 from punctuation.score import Score
 from movimientovelocidad.caidashapes import FallManager
+from tetromino.colors import COLORS
+from prometheus_client import start_http_server, Counter
+import time
 
-NEW_TETROMINO_TIME = 2000
+game_counter = Counter('tetris_games_played','Total number of Tetris games played')
 
 def main():
+
+    start_http_server(8000)
     running = True
     game_over = False
 
@@ -71,7 +78,7 @@ def main():
                         position = new_position
                     else:
                         # Fijar el tetrominó en la cuadrícula
-                        fix_tetromino_in_place(grid, tetromino, position)
+                        fix_tetromino_in_place(grid, tetromino, position, shape_name)
                         
                         # Verificar cuántas líneas se completaron
                         lines_cleared = check_lines(grid)
@@ -94,6 +101,8 @@ def main():
                 display_score(window, score.points)
                 pygame.display.flip()
 
+                time.sleep(1)
+
     pygame.quit()
 
 # Función para verificar si una posición es válida
@@ -109,13 +118,14 @@ def is_valid_position(position, tetromino, grid, window):
                     return False
     return True
 
-def fix_tetromino_in_place(grid, tetromino, position):
+def fix_tetromino_in_place(grid, tetromino, position, shape_name):
     for y, row in enumerate(tetromino):
         for x, cell in enumerate(row):
             if cell:
                 grid_y = (position[1] // 30) + y
                 grid_x = (position[0] // 30) + x
-                grid[grid_y][grid_x] = cell
+                #grid[grid_y][grid_x] = cell
+                grid[grid_y][grid_x] = COLORS[shape_name]
 
 # Función para mostrar la pantalla de Game Over
 def display_game_over(window):
@@ -139,7 +149,8 @@ def draw_grid(window, grid):
     for y, row in enumerate(grid):
         for x, cell in enumerate(row):
             if cell:
-                pygame.draw.rect(window, (128, 128, 128), pygame.Rect(x * 30, y * 30, 30, 30))
+                pygame.draw.rect(window, cell, pygame.Rect(x * 30, y * 30, 30, 30))
+                pygame.draw.rect(window, (0, 0, 0), pygame.Rect(x * 30, y * 30, 30, 30), 1)
 
 # Función para mostrar la puntuación en pantalla
 def display_score(window, points):
