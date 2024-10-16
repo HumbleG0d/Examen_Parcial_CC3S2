@@ -395,40 +395,37 @@ Este grafico nos muestra la cantidad de  puntos de historias totales que se le a
 ## Estructura del proyecto
 
   Examen_Parcial_CCS2/
-  │
-  ├── src/
-  │   ├── game.py           # Archivo principal del juego
-  │   ├── tetromino
-  │   │   └── tetromino.py # Definición de las formas de los tetrominós y su rotación
-  │   │   └── colors.py # Definición de los colores de los tetrominós
-  │   │   └── radown_tetromino.py # Generación de tetrominós aleatorios
-  │   │   └── rotation.py # Rotación de tetrominós
-  │   │   └── draw.py # Dibujo de tetrominós
-  │   ├── board
-  │   │   └── board.py          # Lógica del tablero, detección de líneas y gestión de colisiones
-  │   ├── punctuation
-  │   │   └── score.py          # Gestión del sistema de puntuación y líneas completadas
-  │   ├── movimientovelocidad
-  │   │   └── movimientovelocidad.py # Movimiento y velocidad de caída de tetrominós
-  │   ├── game.py # Lógica del juego
-  ├── tests/
-  │   ├── features/
-  │   │   ├── steps/
-  │   │   │   └── test_caida_shapes.py # Test de la caida de los tetrominós
-  │   │   │   └── test_rotacion_piezas.py # Test de la rotacion de los tetrominós
-  │   │   │   └── test_velocidad_shapes.py # Test de la velocidad de caida de los tetrominós
-  │   │   │   └── TestPuntuacion.py # Test de la puntuación
-  │   │   └── caida_shapes.feature  # Definicion de la historia de usuario 4
-  │   │   └── rotacion_piezas.feature # Definición de la historia de usuario 3
-  │   │   └── velocidad_shapes.feature # Definición de la historia de usuario 6
-  │   │   └── puntuacion.feature # Definición de la historia de usuario 7
-  │
-  ├── assets/               # Recursos gráficos o sonidos
-  │
-  ├── Dockerfile            # Archivo de configuración de Docker
-  ├── docker-compose.yml    # Orquestación del servicio Docker
-  ├── requirements.txt      # Dependencias del proyecto
-  └── README.md             # Descripción del proyecto
+├── src/
+│   ├── game.py           # Archivo principal del juego
+│   ├── tetromino/
+│   │   ├── tetromino.py  # Definición de las formas de los tetrominós y su rotación
+│   │   ├── colors.py     # Definición de los colores de los tetrominós
+│   │   ├── random_tetromino.py # Generación de tetrominós aleatorios
+│   │   ├── rotation.py   # Rotación de tetrominós
+│   │   └── draw.py       # Dibujo de tetrominós
+│   ├── board/
+│   │   ├── board.py      # Lógica del tablero, detección de líneas y gestión de colisiones
+│   ├── score/
+│   │   └── score.py      # Gestión del sistema de puntuación y líneas completadas
+│   ├── movimiento/
+│   │   ├── movimientovelocidad.py # Movimiento y velocidad de caída de tetrominós
+│   └── game.py           # Lógica del juego
+├── tests/
+│   ├── test_caida_shapes.py # Test de la caída de los tetrominós
+│   ├── test_rotacion_piezas.py # Test de la rotación de los tetrominós
+│   ├── test_velocidad_shapes.py # Test de la velocidad de caída de los tetrominós
+│   └── TestPuntuacion.py  # Test de la puntuación
+│   ├── features/
+│   │   ├── caida_shapes.feature # Definición de la historia de usuario 4
+│   │   ├── rotacion_piezas.feature # Definición de la historia de usuario 3
+│   │   ├── velocidad_shapes.feature # Definición de la historia de usuario 6
+│   │   └── puntuacion.feature # Definición de la historia de usuario 7
+├── assets/               # Recursos gráficos o sonidos
+├── Dockerfile            # Archivo de configuración de Docker
+├── docker-compose.yml    # Orquestación del servicio Docker
+├── requirements.txt      # Dependencias del proyecto
+└── README.md             # Descripción del proyecto
+
 
 
 ## Instalacion
