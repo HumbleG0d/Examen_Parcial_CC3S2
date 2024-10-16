@@ -1,94 +1,39 @@
-name: Tetris CI/CD Pipeline
+name: CI Pipeline
 
 on:
   push:
     branches:
-      - feature/punctuation
-      - develop
       - main
-    paths:
-      - 'docker-compose.yml'
-      - '.github/workflows/ci.yml'
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  # Primer paso: compilar o preparar el entorno
-  setup:
+  build:
     runs-on: ubuntu-latest
-    name: Preparar entorno para pruebas
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-  # Ejecutar pruebas unitarias con pytest
-  unit-tests:
-    runs-on: ubuntu-latest
-    needs: [setup]
-    name: Ejecutar pruebas unitarias
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Run pytest
-        run: |
-          pytest
-
-  # Ejecutar pruebas BDD con behave
-  bdd-tests:
-    runs-on: ubuntu-latest
-    needs: [setup]
-    name: Ejecutar pruebas BDD con behave
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Run behave tests
-        run: |
-          behave
-
-  # Construir la imagen Docker
-  build-image:
-    name: Build Docker image
-    runs-on: ubuntu-latest
-    needs: [unit-tests, bdd-tests]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
 
       - name: Build Docker image
         run: |
-          docker-compose build
+          docker build -t tetris-game .
 
-  # Levantar servicios con docker-compose
-  integration-tests:
-    name: Integration Tests with Docker Compose
-    runs-on: ubuntu-latest
-    needs: [build-image]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Run Docker Compose up
+      - name: Start services
         run: |
-          docker-compose up -d  # Levanta los servicios (tetris, prometheus, grafana)
+          docker-compose -f docker-compose.yml up -d
 
-      - name: Run integration tests
+      - name: Run unit tests
         run: |
-          docker-compose exec tetris pytest  # Ejecuta las pruebas dentro del contenedor del servicio Tetris
-          docker-compose exec tetris behave  # Ejecuta las pruebas BDD dentro del contenedor del servicio Tetris
+          docker-compose exec tetris pytest test/unit_tests
 
-      - name: Docker Compose down
+      - name: Run feature tests
         run: |
-          docker-compose down  # Detiene y limpia los contenedores una vez que las pruebas se completan
+          docker-compose exec tetris behave test/features
+
+      - name: Stop services
+        run: docker-compose down
