@@ -1,6 +1,20 @@
 # Tetris en Consola
 
-## 1. Configuración inicial del tablero Kanban y el Product Backlog
+## Tabla de Contenidos
+## Tabla de Contenidos
+1. [Configuración inicial del tablero Kanban y el Product Backlog](#configuración-inicial-del-tablero-kanban-y-el-product-backlog)
+2. [Historias de usuario con criterios de aceptación en Gherkin](#historias-de-usuario-con-criterios-de-aceptación-en-gherkin)
+3. [Labels sugeridos y su uso](#labels-sugeridos-y-su-uso)
+4. [Añadir labels a las historias](#añadir-labels-a-las-historias)
+5. [Asignación de puntos de historia](#asignación-de-puntos-de-historia)
+6. [Asignación de miembros a cada historia de usuario](#asignación-de-miembros-a-cada-historia-de-usuario)
+7. [Configuración de Sprints y reacion del Spring Blacklog](#configuración-de-sprints-y-reacion-del-spring-blacklog)
+8. [Configuracion del Burndown Char](#configuracion-del-burndown-char)
+9. [Estructura del proyecto](#estructura-del-proyecto)
+10. [Instalacion](#instalacion)
+11. [Monitoreo con Prometheus y Grafana](#monitoreo-con-prometheus-y-grafana)
+
+## Configuración inicial del tablero Kanban y el Product Backlog
 
 - **Tablero Kanban**: Se creó el tablero Kanban en GitHub para gestionar y visualizar el progreso del proyecto. El tablero contiene las siguientes columnas:
   - **Backlog**: Todas las tareas que aún no han sido trabajadas.
@@ -18,7 +32,7 @@
     - **Sistema de Puntuación**
     - **Deteccion de Fin del Juego**
 
-## 2. Historias de usuario con criterios de aceptación en Gherkin
+## Historias de usuario con criterios de aceptación en Gherkin
 
 Se escribieron las historias de usuario utilizando la sintaxis Gherkin para facilitar la definición clara de criterios de aceptación.
 
@@ -160,21 +174,21 @@ Then el juego termina y se muestra el puntaje final
 En cada historia de usuario se empleo el siguiente template:
 ![Imagen del Template](src/Images/Template.png)
 
-## 3. Labels sugeridos y su uso
+## Labels sugeridos y su uso
 
 Se crearon algunos labels para luego asignarlos a cada historia de usuario, segun sus características y funcionalidad
 
-### 1. Segun su Prioridad
+### Segun su Prioridad
 
 - **high priority**: Para indicar que una historia de usuario o tarea es de alta prioridad.
 - **medium priority**: Para elementos de prioridad media.
 - **low priority**: Para ítems que no requieren atención inmediata.
 
-### 2. Segun su tipo de tarea
+### Segun su tipo de tarea
 
 - **enhancement**: Etiqueta para mejoras solicitadas o nuevas características que se desean agregar al proyecto. Se usa para separar las mejoras o nuevas funcionalidades de los problemas existentes.
 
-## 4. Añadir labels a las historias
+## Añadir labels a las historias
 
 Procederemos a etiquetar cada historia de usuario con su label correspondiente , segun su funcionalidad y función.
 
@@ -244,7 +258,7 @@ Procederemos a etiquetar cada historia de usuario con su label correspondiente ,
 - **Justificación:** La detección del fin del juego es una funcionalidad crucial que define el final de una partida, cuando el tablero está lleno de piezas.
 
 
-## 5. Asignación de puntos de historia
+## Asignación de puntos de historia
 
 Para asignar puntos de historia a cada una de las historias de usuario del proyecto, tomaremos en cuenta la **complejidad**, el **esfuerzo** requerido y la **incertidumbre**. Utilizaré la **secuencia de Fibonacci** (1, 2, 3, 5, 8, 13, etc.) como referencia, donde:
 
@@ -297,7 +311,7 @@ Para asignar puntos de historia a cada una de las historias de usuario del proye
 - **Justificación:** Detectar cuándo el tablero está lleno es una tarea de baja complejidad, ya que solo implica revisar si hay bloques en la fila superior. No es particularmente difícil desde el punto de vista técnico
 
 
-## 6. Asignación de miembros a cada historia de usuario
+## Asignación de miembros a cada historia de usuario
 
 Nos hemos asignado cada historia de usario de acuerdo a el conocimiento y la capacidad de cada uno, siendo asi la creacion de ramas especificas para cada entidad, en este caso **fallen**, **shapes1** y **punctuation**
 
@@ -310,7 +324,7 @@ Nos hemos asignado cada historia de usario de acuerdo a el conocimiento y la cap
 - **Sistema de Puntuacion** Kevin Palomino
 - **Deteccion de Fin del Juego** Kevin Palomino
 
-## 7. Configuración de Sprints y reacion del Spring Blacklog y
+## Configuración de Sprints y reacion del Spring Blacklog
 
 Se introduce **"Sprint"** como el nombre del campo, eligimos **"Iteration"** como el tipo de campo. Mantenmos la duración en una semana
 
@@ -372,10 +386,156 @@ completado. Ahora, se mueve las historias **Sistema de Puntuacion** y **Deteccio
 
 ![Imagen Done6](src/Images/AllDone.png)
 
-## 8. Configuracion del Burndown Char
+## Configuracion del Burndown Char
 
 ![Imagen Burndown Char ](src/Images/Statuschart1.png)
 
 Este grafico nos muestra la cantidad de  puntos de historias totales que se le asigno a cada miembro y que perntencen al sprint
 
+## Estructura del proyecto
 
+  Examen_Parcial_CCS2/
+  │
+  ├── src/
+  │   ├── game.py           # Archivo principal del juego
+  │   ├── tetromino
+  │   │   └── tetromino.py # Definición de las formas de los tetrominós y su rotación
+  │   │   └── colors.py # Definición de los colores de los tetrominós
+  │   │   └── radown_tetromino.py # Generación de tetrominós aleatorios
+  │   │   └── rotation.py # Rotación de tetrominós
+  │   │   └── draw.py # Dibujo de tetrominós
+  │   ├── board
+  │   │   └── board.py          # Lógica del tablero, detección de líneas y gestión de colisiones
+  │   ├── punctuation
+  │   │   └── score.py          # Gestión del sistema de puntuación y líneas completadas
+  │   ├── movimientovelocidad
+  │   │   └── movimientovelocidad.py # Movimiento y velocidad de caída de tetrominós
+  │   ├── game.py # Lógica del juego
+  ├── tests/
+  │   ├── features/
+  │   │   ├── steps/
+  │   │   │   └── test_caida_shapes.py # Test de la caida de los tetrominós
+  │   │   │   └── test_rotacion_piezas.py # Test de la rotacion de los tetrominós
+  │   │   │   └── test_velocidad_shapes.py # Test de la velocidad de caida de los tetrominós
+  │   │   │   └── TestPuntuacion.py # Test de la puntuación
+  │   │   └── caida_shapes.feature  # Definicion de la historia de usuario 4
+  │   │   └── rotacion_piezas.feature # Definición de la historia de usuario 3
+  │   │   └── velocidad_shapes.feature # Definición de la historia de usuario 6
+  │   │   └── puntuacion.feature # Definición de la historia de usuario 7
+  │
+  ├── assets/               # Recursos gráficos o sonidos
+  │
+  ├── Dockerfile            # Archivo de configuración de Docker
+  ├── docker-compose.yml    # Orquestación del servicio Docker
+  ├── requirements.txt      # Dependencias del proyecto
+  └── README.md             # Descripción del proyecto
+
+
+## Instalacion
+
+### Clonar el Repositorio
+
+Primero, clona el repositorio a tu máquina local:
+
+```bash
+git clone git@github.com:HumbleG0d/Examen_Parcial_CC3S2.git
+cd Examen_Parcial_CC3S2
+```
+### Ejecución en local
+
+Debemos tener instalado python 3.10 o superior, luego instalar las dependencias del proyecto con el siguiente comando:
+
+```bash
+pip install -r requirements.txt
+```
+
+Luego de instalar las dependencias, se debe ejecutar el siguiente comando para iniciar el juego:
+
+```bash
+python game.py
+```
+
+### Ejecución con Docker
+
+También puedes ejecutar utilizando Docker. Para esto, necesitas tener Docker instalado en tu máquina.
+
+* Como pygame no se puede ejecutar mediante docker, se debe ejecutar en local , para esto se debe instalar pygame en su maquina.Pero podemos hacer que el contenedor Docker tenga acceso al servidor local X11 para que se pueda visualizar la ventana de pygame:
+ 
+    ```bash
+    xhost +local:docker
+    ```
+
+* En el directorio , donde se encuentra el archivo `Dockerfile` , ejecute el siguiente comando para construir la imagen: 
+    
+    ```bash
+    docker build -t <name> .
+    ```
+* Luego de que se termine de construir la imagen, se debe ejecutar el contenedor con el siguiente comando:
+
+    ```bash
+    docker run -it --rm --privileged -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix <name>
+    ```
+
+* Debe ejecutar el comando en una terminal diferente a la que ejecuta el contenedor, para que pueda interacturar con el contenedor.
+
+* Una vez terminada el uso del contenedor se debe revertir el permiso otorgado a docker:
+
+  ```bash
+  xhost -local:docker
+  ```
+
+## Reglas de juego
+
+- El juego se inicia con un tablero de 10x20, y se genera un tetrominó aleatorio en la parte superior del tablero.
+
+- El jugador puede mover el tetrominó hacia la izquierda o derecha usando las flechas del teclado.
+
+- El jugador puede rotar el tetrominó usando la tecla de la flecha hacia arriba.
+
+- El jugador puede caer el tetrominó usando la tecla de la flecha hacia abajo.
+
+- El jugador recibe puntos por cada línea que completa, y la velocidad del tetrominó aumenta con cada línea completada.
+
+- El juego termina cuando el tablero está lleno y no hay espacio para colocar más tetrominós.
+
+    ![Gif del juego](src/Images/tetris_gif.gif)
+
+## Monitoreo con Prometheus y Grafana
+
+### Acceso a Prometheus
+
+1. Una vez que todos los contenedores estén corriendo, puedes acceder a la interfaz web de Prometheus en:
+
+    ```
+    http://localhost:9090
+    ```
+
+    ![Imagen Prometheus](src/Images/Prometheus.jpg)
+
+### Acceso a Grafana
+
+1. También puedes acceder a la interfaz web de Grafana en:
+
+    ```
+    http://localhost:3000
+    ```
+2. Las credenciales de acceso son:
+    * Usuario: admin
+    * Contraseña: admin
+
+3.  Una vez dentro de Grafana:
+    - Ve a la sección de **Configuration** y selecciona **Data Sources**.
+    - Agrega **Prometheus** como una fuente de datos usando la siguiente URL para conectarlo:
+
+      ```
+      http://prometheus:9090
+      ```
+4. Crea un dashboard para visualizar las métricas:
+    - Ve a **Create** > **Dashboard**.
+    - Selecciona **Add a new panel** y en la sección de **Data source**, selecciona **Prometheus**.
+    - Escribe una consulta para mostrar una métrica.
+    - Guarda el panel y agrégalo a un dashboard.
+
+    ![Imagen Grafana](src/Images/Grafana.jpg)
+    
+    
