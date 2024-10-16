@@ -19,6 +19,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiamos todo el contenido de nuestro proyecto al contenedor
 COPY . .
 
+ENV PYTHONPATH=/app
+
 ENV XDG_RUNTIME_DIR=/tmp
 
 # Comando por defecto para ejecutar el juego
