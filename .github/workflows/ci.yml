@@ -34,7 +34,7 @@ jobs:
 
       - name: Run unit tests
         run: |
-          docker-compose exec tetris pytest test/unit_tests
+          docker-compose exec -T tetris pytest test/unit_tests
 
       - name: Run feature tests
         run: |
